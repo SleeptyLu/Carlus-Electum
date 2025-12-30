@@ -1,4 +1,8 @@
 C:\Users\TooGa\Documents\GitHub\Carlus-Electum\src\main\java\org\carluselectum\ecommerce\data\DatabaseConnector.java
+C:\Users\TooGa\Documents\GitHub\Carlus-Electum\src\main\java\org\carluselectum\ecommerce\data\ProductRepository.java
 C:\Users\TooGa\Documents\GitHub\Carlus-Electum\src\main\java\org\carluselectum\ecommerce\model\Product.java
 C:\Users\TooGa\Documents\GitHub\Carlus-Electum\src\main\java\org\carluselectum\ecommerce\presentation\MainUI.java
+C:\Users\TooGa\Documents\GitHub\Carlus-Electum\src\main\java\org\carluselectum\ecommerce\service\Buy2Get3Discount.java
+C:\Users\TooGa\Documents\GitHub\Carlus-Electum\src\main\java\org\carluselectum\ecommerce\service\DiscountStrategy.java
 C:\Users\TooGa\Documents\GitHub\Carlus-Electum\src\main\java\org\carluselectum\ecommerce\service\OrderService.java
+C:\Users\TooGa\Documents\GitHub\Carlus-Electum\src\main\java\org\carluselectum\ecommerce\service\PercentageDiscount.java
