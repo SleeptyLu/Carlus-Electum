@@ -1,0 +1,4 @@
+org\carluselectum\ecommerce\service\OrderService.class
+org\carluselectum\ecommerce\data\DatabaseConnector.class
+org\carluselectum\ecommerce\presentation\MainUI.class
+org\carluselectum\ecommerce\model\Product.class
