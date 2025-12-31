@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.Scanner;
 import org.carluselectum.ecommerce.data.ProductRepository;
 import org.carluselectum.ecommerce.model.Product;
-import org.carluselectum.ecommerce.model.Cart;
-import org.carluselectum.ecommerce.service.*;
+import org.carluselectum.ecommerce.model.cart.Cart;
+import org.carluselectum.ecommerce.service.discount.Buy2Get3Discount;
+import org.carluselectum.ecommerce.service.discount.DiscountStrategy;
+import org.carluselectum.ecommerce.service.discount.PercentageDiscount;
+import org.carluselectum.ecommerce.service.payment.PaymentFactory;
+import org.carluselectum.ecommerce.service.payment.PaymentProcessor;
 
 public class MainUI {
     public static final String RESET = "\u001B[0m", GREEN = "\u001B[32m", YELLOW = "\u001B[33m",
@@ -90,14 +94,30 @@ public class MainUI {
 
         showReceipt(cart, baseTotal, finalPrice);
 
-        System.out.print(YELLOW + "\nFinish and update stock? (y/n): " + RESET);
-        if (input.next().equalsIgnoreCase("y")) {
-            cart.getItems().forEach(item -> repo.updateStock(item.getProduct().getId(), item.getQuantity()));
-            System.out.println(GREEN + "Order processed! Stock updated in database." + RESET);
-        } else {
-            System.out.println(RED + "Order cancelled." + RESET);
-        }
+        System.out.println(CYAN + "\n[ STEP 2: PAYMENT METHOD ]" + RESET);
+        System.out.println("1. PayPal");
+        System.out.println("2. Credit Card");
+        System.out.print(YELLOW + "Choose method (1-2): " + RESET);
+        int payMethod = input.nextInt();
 
+        try {
+
+            PaymentProcessor processor = PaymentFactory.createPayment(payMethod);
+
+            System.out.print(YELLOW + "\nAuthorize payment of " + finalPrice + " EUR? (y/n): " + RESET);
+            if (input.next().equalsIgnoreCase("y")) {
+                if (processor.process(finalPrice)) {
+                    cart.getItems().forEach(item -> repo.updateStock(item.getProduct().getId(), item.getQuantity()));
+                    System.out.println(GREEN + "Order processed! Stock updated in database." + RESET);
+                } else {
+                    System.out.println(RED + "Payment failed. Transaction aborted." + RESET);
+                }
+            } else {
+                System.out.println(RED + "Order cancelled." + RESET);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(RED + "Error: " + e.getMessage() + RESET);
+        }
         input.close();
     }
 

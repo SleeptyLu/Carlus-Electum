@@ -20,10 +20,10 @@ Even as a solo developer, I use a professional naming convention:
 * **CEL-ID**: The unique ticket ID from the project backlog (e.g., CEL-05).
 
 ### Requirements Traceability
-Every commit is linked to a specific requirement using the "fixes #ID" syntax[cite: 67, 200]. This ensures that functional requirements are directly supported by the implementation.
+Every commit is linked to a specific requirement using the "fixes #ID". This ensures that functional requirements are directly supported by the implementation.
 
 ## 3. Architecture & Design Patterns
-The project follows a **Layered Architecture** to ensure the code is maintainable and testable[cite: 126, 132].
+The project follows a **Layered Architecture** to ensure the code is maintainable and testable.
 
 ### Implemented Patterns
 1. **Strategy Pattern (CEL-05)**: Handles different discount logic (Winter Sale vs. Buy 2 Get 3) without cluttered conditional statements.

@@ -1,4 +1,6 @@
-package org.carluselectum.ecommerce.model;
+package org.carluselectum.ecommerce.model.cart;
+
+import org.carluselectum.ecommerce.model.Product;
 
 public class CartItem {
     private Product product;
