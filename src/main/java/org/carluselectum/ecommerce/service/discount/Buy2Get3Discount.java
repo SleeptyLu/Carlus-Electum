@@ -6,8 +6,9 @@ import java.util.List;
 public class Buy2Get3Discount implements DiscountStrategy {
     @Override
     public double applyDiscount(double total, List<Double> prices) {
-        if (prices.size() < 3)
+        if (prices == null || prices.size() < 3) {
             return total;
+        }
 
         Collections.sort(prices);
         int freeItems = prices.size() / 3;
