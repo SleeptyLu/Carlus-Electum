@@ -2,7 +2,6 @@ package org.carluselectum.ecommerce.model.cart;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.carluselectum.ecommerce.model.Product;
 import org.carluselectum.ecommerce.service.discount.DiscountStrategy;
 
@@ -10,10 +9,15 @@ public class Cart {
     private List<CartItem> items = new ArrayList<>();
 
     public void addItem(Product product, int quantity) {
+        if (quantity <= 0) {
+            return;
+        }
+
         for (CartItem item : items) {
             if (item.getProduct().getId().equals(product.getId())) {
                 int totalNewQty = item.getQuantity() + quantity;
 
+                // Check stock availability
                 if (totalNewQty <= product.getStock()) {
                     item.setQuantity(totalNewQty);
                 }
