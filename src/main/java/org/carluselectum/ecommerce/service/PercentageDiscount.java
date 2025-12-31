@@ -2,12 +2,11 @@ package org.carluselectum.ecommerce.service;
 
 import java.util.List;
 
-
 public class PercentageDiscount implements DiscountStrategy {
     private double percentage;
 
-    public PercentageDiscount() {
-        this.percentage = 0.10; 
+    public PercentageDiscount(double percentage) {
+        this.percentage = percentage / 100;
     }
 
     @Override
