@@ -1,8 +1,10 @@
-package org.carluselectum.ecommerce.model;
+package org.carluselectum.ecommerce.model.cart;
 
-import org.carluselectum.ecommerce.service.DiscountStrategy;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.carluselectum.ecommerce.model.Product;
+import org.carluselectum.ecommerce.service.discount.DiscountStrategy;
 
 public class Cart {
     private List<CartItem> items = new ArrayList<>();

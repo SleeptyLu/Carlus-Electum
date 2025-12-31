@@ -1,4 +1,4 @@
-package org.carluselectum.ecommerce.service;
+package org.carluselectum.ecommerce.service.discount;
 
 import java.util.Collections;
 import java.util.List;
