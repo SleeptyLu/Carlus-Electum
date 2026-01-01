@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 31, 2025 at 12:29 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Host: localhost
+-- Generation Time: Jan 01, 2026 at 09:09 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,18 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `products` (
   `id` varchar(10) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `price` decimal(10,2) NOT NULL
+  `price` decimal(10,2) NOT NULL,
+  `stock` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`) VALUES
-('1', 'Monitor Gaming 33\"', 150.00),
-('2', 'Teclado Mecanico RGB', 80.00),
-('3', 'Rato Wireless', 45.00),
-('4', 'tapete de rato', 20.00);
+INSERT INTO `products` (`id`, `name`, `price`, `stock`) VALUES
+('1', 'Monitor Gaming 33\"', 150.00, 6),
+('2', 'Teclado Mecanico RGB', 80.00, 6),
+('3', 'Rato Wireless', 45.00, 7),
+('4', 'tapete de rato', 20.00, 2);
 
 --
 -- Indexes for dumped tables
