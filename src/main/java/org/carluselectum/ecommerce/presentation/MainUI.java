@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 import org.carluselectum.ecommerce.data.ProductRepository;
 import org.carluselectum.ecommerce.model.Product;
+import org.carluselectum.ecommerce.model.auth.User;
 import org.carluselectum.ecommerce.model.cart.Cart;
+import org.carluselectum.ecommerce.service.auth.AuthService;
 import org.carluselectum.ecommerce.service.discount.Buy2Get3Discount;
 import org.carluselectum.ecommerce.service.discount.DiscountStrategy;
 import org.carluselectum.ecommerce.service.discount.PercentageDiscount;
@@ -17,10 +19,39 @@ public class MainUI {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        AuthService auth = new AuthService();
+        User loggedInUser = null;
+
+        // --- BLOCO DE AUTENTICAÇÃO (Mínimas alterações) ---
+        while (loggedInUser == null) {
+            System.out.println(CYAN + "\n=== CARLUS ELECTUM - ACESSO ===" + RESET);
+            System.out.println("1. Login | 2. Criar Conta | 0. Sair");
+            System.out.print(YELLOW + "Opção: " + RESET);
+            int op = input.nextInt();
+            if (op == 0)
+                return;
+
+            System.out.print("Email: ");
+            String email = input.next();
+            System.out.print("Password: ");
+            String pass = input.next();
+
+            if (op == 1) {
+                loggedInUser = auth.login(email, pass);
+                if (loggedInUser == null)
+                    System.out.println(RED + "Credenciais erradas!" + RESET);
+            } else {
+                auth.register(email, pass);
+                System.out.println(GREEN + "Conta criada! Faça login agora." + RESET);
+            }
+        }
+        System.out.println(GREEN + "Bem-vindo, " + loggedInUser.getEmail() + "!" + RESET);
+
+        // --- TEU CÓDIGO ORIGINAL CONTINUA AQUI ---
         ProductRepository repo = new ProductRepository();
         Cart cart = new Cart();
 
-        System.out.println(CYAN + "=== CARLUS ELECTUM - ACTIVE PROMOTIONS ===" + RESET);
+        System.out.println(CYAN + "\n=== CARLUS ELECTUM - ACTIVE PROMOTIONS ===" + RESET);
         System.out.println("- Winter Sale: 10% off on all items.");
         System.out.println("- Buy 3 Pay 2: Cheapest item is free when buying 3+ items.");
 
@@ -101,9 +132,7 @@ public class MainUI {
         int payMethod = input.nextInt();
 
         try {
-
             PaymentProcessor processor = PaymentFactory.createPayment(payMethod);
-
             System.out.print(YELLOW + "\nAuthorize payment of " + finalPrice + " EUR? (y/n): " + RESET);
             if (input.next().equalsIgnoreCase("y")) {
                 if (processor.process(finalPrice)) {
