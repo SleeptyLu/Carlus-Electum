@@ -2,6 +2,7 @@ package org.carluselectum.ecommerce.presentation;
 
 import java.util.List;
 import java.util.Scanner;
+
 import org.carluselectum.ecommerce.data.ProductRepository;
 import org.carluselectum.ecommerce.model.Product;
 import org.carluselectum.ecommerce.model.auth.User;
@@ -22,7 +23,6 @@ public class MainUI {
         AuthService auth = new AuthService();
         User loggedInUser = null;
 
-        // --- BLOCO DE AUTENTICAÇÃO (Mínimas alterações) ---
         while (loggedInUser == null) {
             System.out.println(CYAN + "\n=== CARLUS ELECTUM - ACESSO ===" + RESET);
             System.out.println("1. Login | 2. Criar Conta | 0. Sair");
@@ -38,7 +38,7 @@ public class MainUI {
 
             if (op == 1) {
                 loggedInUser = auth.login(email, pass);
-                if (loggedInUser == null)
+                if (loggedInUser == null)            
                     System.out.println(RED + "Credenciais erradas!" + RESET);
             } else {
                 auth.register(email, pass);
@@ -47,7 +47,6 @@ public class MainUI {
         }
         System.out.println(GREEN + "Bem-vindo, " + loggedInUser.getEmail() + "!" + RESET);
 
-        // --- TEU CÓDIGO ORIGINAL CONTINUA AQUI ---
         ProductRepository repo = new ProductRepository();
         Cart cart = new Cart();
 

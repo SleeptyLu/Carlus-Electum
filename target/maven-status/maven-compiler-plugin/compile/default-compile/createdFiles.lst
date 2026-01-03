@@ -1,8 +1,5 @@
-org\carluselectum\ecommerce\service\OrderService.class
 org\carluselectum\ecommerce\data\ProductRepository.class
 org\carluselectum\ecommerce\data\DatabaseConnector.class
 org\carluselectum\ecommerce\model\Product.class
 org\carluselectum\ecommerce\presentation\MainUI.class
-org\carluselectum\ecommerce\service\Buy2Get3Discount.class
-org\carluselectum\ecommerce\service\DiscountStrategy.class
-org\carluselectum\ecommerce\service\PercentageDiscount.class
+org\carluselectum\ecommerce\service\OrderService.class
